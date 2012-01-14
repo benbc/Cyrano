@@ -11,8 +11,9 @@ def main(global_config, **settings):
 
     config.add_static_view('static', 'static')
     config.add_route('front', '/')
-    config.add_route('add_album', '/album/add', request_method='POST')
     config.add_route('album', '/album/{id:\d+}')
+    config.add_route('add_album', '/album/add', request_method='POST')
+    config.add_route('add_video', '/video/add', request_method='POST')
 
     config.scan()
     return config.make_wsgi_app()
