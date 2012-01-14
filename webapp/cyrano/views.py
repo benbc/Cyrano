@@ -1,4 +1,4 @@
-from pyramid.response import Response
+from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_config
 
 from .models import (
@@ -13,4 +13,4 @@ def index(request):
 
 @view_config(route_name='add_album')
 def add_album(request):
-    return Response('OK')
+    return HTTPFound(request.route_url('index'))
