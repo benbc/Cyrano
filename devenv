@@ -1,0 +1,14 @@
+sudo puppet apply devenv.pp
+
+export WORKON_HOME=~/.virtualenvs
+mkdir -p $WORKON_HOME
+. /usr/local/bin/virtualenvwrapper.sh
+
+if [ ! -d $WORKON_HOME/cyrano ]; then
+   mkvirtualenv --no-site-packages cyrano
+fi
+
+workon cyrano
+pip install --requirement=requirements.txt --quiet
+
+# python setup.py develop
