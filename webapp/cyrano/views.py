@@ -5,8 +5,8 @@ from .models import DBSession, Album
 
 @view_config(route_name='front', renderer='templates/front.jinja2')
 def front(request):
-#    one = DBSession.query(MyModel).filter(MyModel.name=='one').first()
-    return {}
+    albums = DBSession.query(Album).all()
+    return {'albums': albums}
 
 @view_config(route_name='add_album')
 def add_album(request):

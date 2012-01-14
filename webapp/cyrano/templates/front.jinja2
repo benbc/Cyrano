@@ -4,6 +4,13 @@
   </head>
   <body>
     <h1>Cyrano</h1>
+    <h2>Albums</h2>
+    <ul>
+      {% for album in albums %}
+        <li>{{ album.name }}</li>
+      {% endfor %}
+    </ul>
+    <h2>Add an album</h2>
     <form action="/album/add" method="POST">
       <label for="album-name">Name</label>
       <input type="text" name="name" id="album-name"/>
