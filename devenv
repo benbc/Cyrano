@@ -11,4 +11,4 @@ fi
 workon cyrano
 pip install --requirement=requirements.txt --quiet
 
-# python setup.py develop
+(cd webapp; python setup.py develop)

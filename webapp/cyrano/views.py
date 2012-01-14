@@ -1,3 +1,4 @@
+from pyramid.response import Response
 from pyramid.view import view_config
 
 from .models import (
@@ -5,7 +6,11 @@ from .models import (
     MyModel,
     )
 
-@view_config(route_name='home', renderer='templates/mytemplate.pt')
-def my_view(request):
-    one = DBSession.query(MyModel).filter(MyModel.name=='one').first()
-    return {'one':one, 'project':'cyrano'}
+@view_config(route_name='index', renderer='templates/index.jinja2')
+def index(request):
+#    one = DBSession.query(MyModel).filter(MyModel.name=='one').first()
+    return {}
+
+@view_config(route_name='add_album')
+def add_album(request):
+    return Response('OK')
