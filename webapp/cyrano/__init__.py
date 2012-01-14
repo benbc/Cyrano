@@ -10,7 +10,7 @@ def main(global_config, **settings):
     config.include('pyramid_jinja2')
 
     config.add_static_view('static', 'static')
-    config.add_route('index', '/')
+    config.add_route('front', '/')
     config.add_route('add_album', '/album/add', request_method='POST')
 
     config.scan()
