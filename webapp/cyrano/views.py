@@ -1,5 +1,3 @@
-from urlparse import urlparse, parse_qs
-
 from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_config
 
@@ -29,12 +27,15 @@ def add_album(request):
 @view_config(route_name='add_video')
 def add_video(request):
     url = request.params['url']
-    query = parse_qs(urlparse(url).query)
-    youtube_id = query['v'][0]
-    video = Video(youtube_id)
+    video = Video(_youtube_id_from_url(url))
 
     album_id = request.params['album']
     album = DBSession.query(Album).get(album_id)
     album.videos.append(video)
 
     return HTTPFound(request.route_url('album', id=album_id))
+
+def _youtube_id_from_url(url):
+    from urlparse import urlparse, parse_qs
+    query = parse_qs(urlparse(url).query)
+    return query['v'][0]

@@ -4,6 +4,12 @@
   </head>
   <body>
     <h1>{{ album.name }}</h1>
+    <h2>Videos</h2>
+    <ul>
+      {% for video in album.videos %}
+        <li><a href="{{ video.url() }}">{{ video.id }}</a></li>
+      {% endfor %}
+    </ul>
     <h2>Add a video</h2>
     <form action="/video/add" method="POST">
       <input type="hidden" name="album" value="{{ album.id }}"/>

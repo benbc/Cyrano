@@ -23,3 +23,6 @@ class Video(Base):
 
     def __init__(self, youtube_id):
         self.youtube_id = youtube_id
+
+    def url(self):
+        return "http://www.youtube.com/watch?v=%s" % self.youtube_id
