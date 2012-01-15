@@ -30,11 +30,11 @@ def add_album(request):
 def add_video(request):
     url = request.params['url']
     query = parse_qs(urlparse(url).query)
-    youtube_id = query['v']
+    youtube_id = query['v'][0]
     video = Video(youtube_id)
 
     album_id = request.params['album']
     album = DBSession.query(Album).get(album_id)
-    album.videos.append(youtube_id)
+    album.videos.append(video)
 
     return HTTPFound(request.route_url('album', id=album_id))
