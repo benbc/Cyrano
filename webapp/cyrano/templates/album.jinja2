@@ -7,7 +7,7 @@
     <h2>Videos</h2>
     <ul>
       {% for video in album.videos %}
-        <li><a href="{{ video.url() }}">{{ video.id }}</a></li>
+        <li><a href="{{ video['url'] }}">{{ video['title'] }}</a></li>
       {% endfor %}
     </ul>
     <h2>Add a video</h2>
