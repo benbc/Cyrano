@@ -1,6 +1,14 @@
 import os
 import gdata.youtube.service
 
+def list_playlists():
+    def convert(entry):
+        url = entry.GetSelfLink().href
+        id = url.split('/')[-1]
+        title = entry.title.text
+        return {'id': id, 'title':title}
+    return map(convert, _service.GetYouTubePlaylistFeed().entry)
+
 def create_playlist(name):
     playlist = _service.AddPlaylist(name, '', True) # no description, private
     return playlist.id.text
