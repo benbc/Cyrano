@@ -12,3 +12,5 @@ workon cyrano
 pip install --requirement=requirements.txt --quiet
 
 (cd webapp; python setup.py develop)
+
+. ~/.cyrano

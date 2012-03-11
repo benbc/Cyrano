@@ -10,10 +10,12 @@ class Album(Base):
     __tablename__ = 'album'
     id = Column(Integer, primary_key=True)
     name = Column(Text, unique=True)
+    playlist = Column(Text, unique=True)
     videos = relationship('Video')
 
-    def __init__(self, name):
+    def __init__(self, name, playlist):
         self.name = name
+        self.playlist = playlist
 
 class Video(Base):
     __tablename__ = 'video'
