@@ -20,7 +20,7 @@ def add_album(request):
 def album(request):
     id = request.matchdict['id']
     playlist = get_playlist(id)
-    return {'album': {'name': playlist['title'], 'videos': playlist['videos']}}
+    return {'album': {'id': id, 'name': playlist['title'], 'videos': playlist['videos']}}
 
 @view_config(route_name='add_video')
 def add_video(request):
