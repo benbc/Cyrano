@@ -4,7 +4,13 @@
   </head>
   <body>
     <h1>{{ album.name }}</h1>
-    <h2>Videos</h2>
+    <form action="/video/add" method="POST">
+      <input type="hidden" name="album" value="{{ album.id }}"/>
+      <label for="video-url">YouTube URL</label>
+      <input type="text" name="url" id="video-url"/>
+      <input type="submit" value="Add"/>
+    </form>
+
     {% for video in album.videos %}
       <div>
         <object width="560" height="315">
@@ -20,13 +26,5 @@
         </object>
       </div>
     {% endfor %}
-
-    <h2>Add a video</h2>
-    <form action="/video/add" method="POST">
-      <input type="hidden" name="album" value="{{ album.id }}"/>
-      <label for="video-url">YouTube URL</label>
-      <input type="text" name="url" id="video-url"/>
-      <input type="submit" value="Submit"/>
-    </form>
   </body>
 </html>
