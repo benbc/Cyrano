@@ -4,9 +4,8 @@ import gdata.youtube.service
 def list_playlists():
     def convert(entry):
         url = entry.GetSelfLink().href
-        id = url.split('/')[-1]
         title = entry.title.text
-        return {'id': id, 'title':title}
+        return {'id': _playlist_id_from_url(url), 'title':title}
     return map(convert, _service.GetYouTubePlaylistFeed().entry)
 
 def get_playlist(id):
@@ -20,7 +19,8 @@ def get_playlist(id):
 
 def create_playlist(name):
     playlist = _service.AddPlaylist(name, '', True) # no description, private
-    return playlist.id.text
+    url = playlist.GetSelfLink().href
+    return _playlist_id_from_url(url)
 
 def add_video_to_playlist(video_url, playlist_id):
     playlist_url = _playlist_url_from_id(playlist_id)
@@ -29,6 +29,9 @@ def add_video_to_playlist(video_url, playlist_id):
 
 def _playlist_url_from_id(id):
     return "http://gdata.youtube.com/feeds/api/playlists/%s" % id
+
+def _playlist_id_from_url(url):
+    return url.split('/')[-1]
 
 def _video_id_from_url(url):
     from urlparse import urlparse, parse_qs
