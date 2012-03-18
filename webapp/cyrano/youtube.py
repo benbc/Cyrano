@@ -12,8 +12,7 @@ def get_playlist(id):
     def convert(video):
         url = video.GetHtmlLink().href
         id = _video_id_from_url(url)
-        entry = _service.GetYouTubeVideoEntry(video_id=id)
-        return {'title': entry.title.text, 'url': entry.GetSwfUrl()}
+        return {'url': "https://www.youtube.com/v/%s" % id}
     playlist = _service.GetYouTubePlaylistVideoFeed(_playlist_url_from_id(id))
     videos = map(convert, playlist.entry)
     return {'title': playlist.title.text, 'id': id, 'videos': videos}
