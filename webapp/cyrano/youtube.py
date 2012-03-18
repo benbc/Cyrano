@@ -10,9 +10,10 @@ def list_playlists():
 
 def get_playlist(id):
     def convert(video):
-        title = video.title.text
-        url = video.GetSelfLink().href
-        return {'title': title, 'url': url}
+        url = video.GetHtmlLink().href
+        id = _video_id_from_url(url)
+        entry = _service.GetYouTubeVideoEntry(video_id=id)
+        return {'title': entry.title.text, 'url': entry.GetSwfUrl()}
     playlist = _service.GetYouTubePlaylistVideoFeed(_playlist_url_from_id(id))
     videos = map(convert, playlist.entry)
     return {'title': playlist.title.text, 'id': id, 'videos': videos}
