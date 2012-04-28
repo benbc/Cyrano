@@ -1,30 +1,41 @@
 from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_config
 
-from .youtube import add_video_to_playlist, create_playlist, get_playlist, list_playlists
+from .models import DBSession, Album, Video
 
 @view_config(route_name='front', renderer='templates/front.jinja2')
 def front(request):
-    def convert(playlist):
-        return {'name': playlist['title'],
-                'url': request.route_url('album', id=playlist['id'])}
-    return {'albums': map(convert, list_playlists())}
+    def convert(album):
+        return {'name': album.name,
+                'url': request.route_url('album', id=album.id)}
+    return {'albums': map(convert, DBSession.query(Album).all())}
 
 @view_config(route_name='add_album')
 def add_album(request):
     name = request.params['name']
-    id = create_playlist(name)
-    return HTTPFound(request.route_url('album', id=id))
+    album = Album(name)
+    DBSession.add(album)
+    DBSession.flush(album)
+    return HTTPFound(request.route_url('album', id=album.id))
 
 @view_config(route_name='album', renderer='templates/album.jinja2')
 def album(request):
     id = request.matchdict['id']
-    playlist = get_playlist(id)
-    return {'album': {'id': id, 'name': playlist['title'], 'videos': playlist['videos']}}
+    album = DBSession.query(Album).get(id)
+    return {'album': album}
 
 @view_config(route_name='add_video')
 def add_video(request):
     id = request.params['album']
     url = request.params['url']
-    add_video_to_playlist(url, id)
+
+    album = DBSession.query(Album).get(id)
+    video = Video(album, _youtube_id_from_url(url))
+    DBSession.add(video)
+
     return HTTPFound(request.route_url('album', id=id))
+
+def _youtube_id_from_url(url):
+    from urlparse import urlparse, parse_qs
+    query = parse_qs(urlparse(url).query)
+    return query['v'][0]

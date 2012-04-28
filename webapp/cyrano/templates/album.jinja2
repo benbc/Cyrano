@@ -14,10 +14,10 @@
     {% for video in album.videos %}
       <div>
         <object width="560" height="315">
-          <param name="movie" value="{{ video['url'] }}?fs=1"></param>
+          <param name="movie" value="https://www.youtube.com/v/{{ video.youtube_id }}?fs=1"></param>
           <param name="allowFullScreen" value="true"></param>
           <param name="allowScriptAccess" value="always"></param>
-          <embed src="{{ video['url'] }}?fs=1"
+          <embed src="https://www.youtube.com/v/{{ video.youtube_id }}?fs=1"
                  type="application/x-shockwave-flash"
                  allowfullscreen="true"
                  allowscriptaccess="always"
