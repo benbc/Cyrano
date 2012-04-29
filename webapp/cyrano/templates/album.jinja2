@@ -10,6 +10,8 @@
     <h1>{{ album.name }}</h1>
     <form action="/message/add" method="POST">
       <input type="hidden" name="album" value="{{ album.id }}"/>
+      <label for="message-name">Name</label>
+      <input type="text" name="name" id="message-name"/><br/>
       <label for="message-url">YouTube URL</label>
       <input type="text" name="url" id="message-url"/>
       <input type="submit" value="Add"/>
@@ -22,7 +24,7 @@
           <table>
             <tr>
               <td>
-                <p>Mungojerrie and Rumpleteazer say</p>
+                <p>{{ message.name }} say</p>
                 <blockquote>Have a lovely day.</blockquote>
               </td>
               <td>

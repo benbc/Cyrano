@@ -19,8 +19,10 @@ class Message(Base):
     __tablename__ = 'message'
     id = Column(Integer, primary_key=True)
     album = Column(Integer, ForeignKey('album.id'))
+    name = Column(Text)
     youtube_id = Column(Text)
 
-    def __init__(self, album, youtube_id):
+    def __init__(self, album, name, youtube_id):
         self.album = album.id
+        self.name = name
         self.youtube_id = youtube_id

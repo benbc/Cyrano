@@ -26,14 +26,15 @@ def album(request):
 
 @view_config(route_name='add_message')
 def add_message(request):
-    id = request.params['album']
+    album_id = request.params['album']
+    name = request.params['name']
     url = request.params['url']
 
-    album = DBSession.query(Album).get(id)
-    message = Message(album, _youtube_id_from_url(url))
+    album = DBSession.query(Album).get(album_id)
+    message = Message(album, name, _youtube_id_from_url(url))
     DBSession.add(message)
 
-    return HTTPFound(request.route_url('album', id=id))
+    return HTTPFound(request.route_url('album', id=album_id))
 
 def _youtube_id_from_url(url):
     from urlparse import urlparse, parse_qs
