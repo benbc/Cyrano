@@ -8,26 +8,26 @@
   </head>
   <body>
     <h1>{{ album.name }}</h1>
-    <form action="/video/add" method="POST">
+    <form action="/message/add" method="POST">
       <input type="hidden" name="album" value="{{ album.id }}"/>
-      <label for="video-url">YouTube URL</label>
-      <input type="text" name="url" id="video-url"/>
+      <label for="message-url">YouTube URL</label>
+      <input type="text" name="url" id="message-url"/>
       <input type="submit" value="Add"/>
     </form>
 
     <div id="slides">
       <div class="slides_container">
-        {% for video in album.videos %}
+        {% for message in album.messages %}
         <div>
           <table>
             <tr>
               <td>Mungojerrie and Rumpleteazer say</td>
               <td rowspan="2">
                 <object width="560" height="315">
-                  <param name="movie" value="https://www.youtube.com/v/{{ video.youtube_id }}?fs=1"></param>
+                  <param name="movie" value="https://www.youtube.com/v/{{ message.youtube_id }}?fs=1"></param>
                   <param name="allowFullScreen" value="true"></param>
                   <param name="allowScriptAccess" value="always"></param>
-                  <embed src="https://www.youtube.com/v/{{ video.youtube_id }}?fs=1"
+                  <embed src="https://www.youtube.com/v/{{ message.youtube_id }}?fs=1"
                          type="application/x-shockwave-flash"
                          allowfullscreen="true"
                          allowscriptaccess="always"

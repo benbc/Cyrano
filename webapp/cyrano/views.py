@@ -1,7 +1,7 @@
 from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_config
 
-from .models import DBSession, Album, Video
+from .models import DBSession, Album, Message
 
 @view_config(route_name='front', renderer='templates/front.jinja2')
 def front(request):
@@ -15,7 +15,7 @@ def add_album(request):
     name = request.params['name']
     album = Album(name)
     DBSession.add(album)
-    DBSession.flush(album)
+    DBSession.flush()
     return HTTPFound(request.route_url('album', id=album.id))
 
 @view_config(route_name='album', renderer='templates/album.jinja2')
@@ -24,14 +24,14 @@ def album(request):
     album = DBSession.query(Album).get(id)
     return {'album': album}
 
-@view_config(route_name='add_video')
-def add_video(request):
+@view_config(route_name='add_message')
+def add_message(request):
     id = request.params['album']
     url = request.params['url']
 
     album = DBSession.query(Album).get(id)
-    video = Video(album, _youtube_id_from_url(url))
-    DBSession.add(video)
+    message = Message(album, _youtube_id_from_url(url))
+    DBSession.add(message)
 
     return HTTPFound(request.route_url('album', id=id))
 

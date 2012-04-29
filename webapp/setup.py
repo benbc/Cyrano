@@ -31,4 +31,3 @@ setup(name='cyrano',
       populate_cyrano = cyrano.scripts.populate:main
       """,
       )
-

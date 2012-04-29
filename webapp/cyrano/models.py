@@ -10,13 +10,13 @@ class Album(Base):
     __tablename__ = 'album'
     id = Column(Integer, primary_key=True)
     name = Column(Text, unique=True)
-    videos = relationship('Video')
+    messages = relationship('Message')
 
     def __init__(self, name):
         self.name = name
 
-class Video(Base):
-    __tablename__ = 'video'
+class Message(Base):
+    __tablename__ = 'message'
     id = Column(Integer, primary_key=True)
     album = Column(Integer, ForeignKey('album.id'))
     youtube_id = Column(Text)
