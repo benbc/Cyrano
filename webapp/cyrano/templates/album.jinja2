@@ -19,17 +19,29 @@
       <div class="slides_container">
         {% for video in album.videos %}
         <div>
-          <object width="560" height="315">
-            <param name="movie" value="https://www.youtube.com/v/{{ video.youtube_id }}?fs=1"></param>
-            <param name="allowFullScreen" value="true"></param>
-            <param name="allowScriptAccess" value="always"></param>
-            <embed src="https://www.youtube.com/v/{{ video.youtube_id }}?fs=1"
-                   type="application/x-shockwave-flash"
-                   allowfullscreen="true"
-                   allowscriptaccess="always"
-                   width="560" height="315">
-            </embed>
-          </object>
+          <table>
+            <tr>
+              <td>Mungojerrie and Rumpleteazer say</td>
+              <td rowspan="2">
+                <object width="560" height="315">
+                  <param name="movie" value="https://www.youtube.com/v/{{ video.youtube_id }}?fs=1"></param>
+                  <param name="allowFullScreen" value="true"></param>
+                  <param name="allowScriptAccess" value="always"></param>
+                  <embed src="https://www.youtube.com/v/{{ video.youtube_id }}?fs=1"
+                         type="application/x-shockwave-flash"
+                         allowfullscreen="true"
+                         allowscriptaccess="always"
+                         width="560" height="315">
+                  </embed>
+                </object>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <blockquote>Have a lovely day.</blockquote>
+              </td>
+            </tr>
+        </table>
         </div>
         {% endfor %}
       </div>
