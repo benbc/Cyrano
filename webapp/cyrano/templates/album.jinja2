@@ -13,7 +13,7 @@
       <label for="message-name">Name</label>
       <input type="text" name="name" id="message-name"/><br/>
       <label for="message-text">Message</label>
-      <input type="text" name="text" id="message-text"/><br/>
+      <textarea name="text" id="message-text"></textarea><br/>
       <label for="message-url">YouTube URL</label>
       <input type="text" name="url" id="message-url"/>
       <input type="submit" value="Add"/>
@@ -25,9 +25,9 @@
         <div>
           <table>
             <tr>
-              <td>
+              <td class="message-text">
                 <p>{{ message.name }} say</p>
-                <blockquote>{{ message.text }}</blockquote>
+                <blockquote>{{ message.html_text()|safe }}</blockquote>
               </td>
               <td>
                 <object width="560" height="315">

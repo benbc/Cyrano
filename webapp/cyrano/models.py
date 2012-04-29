@@ -28,3 +28,6 @@ class Message(Base):
         self.name = name
         self.text = text
         self.youtube_id = youtube_id
+
+    def html_text(self):
+        return "<p>%s</p>" % self.text.replace("\n", "</p></p>")

@@ -38,6 +38,8 @@ def add_message(request):
     return HTTPFound(request.route_url('album', id=album_id))
 
 def _youtube_id_from_url(url):
+    if not url:
+        return None
     from urlparse import urlparse, parse_qs
     query = parse_qs(urlparse(url).query)
     return query['v'][0]
