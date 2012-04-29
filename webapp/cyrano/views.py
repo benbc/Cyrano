@@ -28,10 +28,11 @@ def album(request):
 def add_message(request):
     album_id = request.params['album']
     name = request.params['name']
+    text = request.params['text']
     url = request.params['url']
 
     album = DBSession.query(Album).get(album_id)
-    message = Message(album, name, _youtube_id_from_url(url))
+    message = Message(album, name, text, _youtube_id_from_url(url))
     DBSession.add(message)
 
     return HTTPFound(request.route_url('album', id=album_id))

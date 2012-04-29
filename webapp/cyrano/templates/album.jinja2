@@ -12,6 +12,8 @@
       <input type="hidden" name="album" value="{{ album.id }}"/>
       <label for="message-name">Name</label>
       <input type="text" name="name" id="message-name"/><br/>
+      <label for="message-text">Message</label>
+      <input type="text" name="text" id="message-text"/><br/>
       <label for="message-url">YouTube URL</label>
       <input type="text" name="url" id="message-url"/>
       <input type="submit" value="Add"/>
@@ -25,7 +27,7 @@
             <tr>
               <td>
                 <p>{{ message.name }} say</p>
-                <blockquote>Have a lovely day.</blockquote>
+                <blockquote>{{ message.text }}</blockquote>
               </td>
               <td>
                 <object width="560" height="315">
