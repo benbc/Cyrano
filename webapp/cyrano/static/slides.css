@@ -1,0 +1,20 @@
+.slides_container {
+    width: 560px;
+    display: none;
+}
+
+.slides_container div {
+    width: 560px;
+    height: 315px;
+    display: block;
+}
+
+.pagination {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pagination .current a {
+    color: red;
+}
