@@ -37,7 +37,7 @@ class Message(Base):
     def html_text(self):
         return "<p>%s</p>" % self.text.replace("\n", "</p></p>")
 
-    def _youtube_id_from_url(url):
+    def _youtube_id_from_url(self, url):
         if not url:
             return None
         from urlparse import urlparse, parse_qs
