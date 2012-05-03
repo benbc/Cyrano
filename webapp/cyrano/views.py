@@ -29,17 +29,12 @@ def add_message(request):
     album_id = request.params['album']
     name = request.params['name']
     text = request.params['text']
-    url = request.params['url']
+    youtube_url = request.params.get('youtube-url', None)
+    flickr_link = request.params.get('flickr-link', None)
+    print request.params
 
     album = DBSession.query(Album).get(album_id)
-    message = Message(album, name, text, _youtube_id_from_url(url))
+    message = Message(album, name, text, youtube_url, flickr_link)
     DBSession.add(message)
 
     return HTTPFound(request.route_url('album', id=album_id))
-
-def _youtube_id_from_url(url):
-    if not url:
-        return None
-    from urlparse import urlparse, parse_qs
-    query = parse_qs(urlparse(url).query)
-    return query['v'][0]

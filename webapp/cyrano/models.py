@@ -22,12 +22,24 @@ class Message(Base):
     name = Column(Text)
     text = Column(Text)
     youtube_id = Column(Text)
+    flickr_link = Column(Text)
 
-    def __init__(self, album, name, text, youtube_id):
+    def __init__(self, album, name, text, youtube_url=None, flickr_link=None):
         self.album = album.id
         self.name = name
         self.text = text
-        self.youtube_id = youtube_id
+        if youtube_url:
+            id = self._youtube_id_from_url(youtube_url)
+            self.youtube_id = id
+        elif flickr_link:
+            self.flickr_link = flickr_link
 
     def html_text(self):
         return "<p>%s</p>" % self.text.replace("\n", "</p></p>")
+
+    def _youtube_id_from_url(url):
+        if not url:
+            return None
+        from urlparse import urlparse, parse_qs
+        query = parse_qs(urlparse(url).query)
+        return query['v'][0]
