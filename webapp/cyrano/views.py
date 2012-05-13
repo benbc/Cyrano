@@ -7,7 +7,8 @@ from .models import DBSession, Album, Message
 def front(request):
     def convert(album):
         return {'name': album.name,
-                'url': request.route_url('album', id=album.id)}
+                'url': request.route_url('album', id=album.id),
+                'edit': request.route_url('edit_album', id=album.id)}
     return {'albums': map(convert, DBSession.query(Album).all())}
 
 @view_config(route_name='add_album')
