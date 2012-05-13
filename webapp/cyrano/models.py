@@ -39,6 +39,9 @@ class Message(Base):
             return None
         return "<p>%s</p>" % self.text.replace("\n", "</p><p>")
 
+    def has_media(self):
+        return self.youtube_id or self.flickr_link
+
     def _youtube_id_from_url(self, url):
         if not url:
             return None

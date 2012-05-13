@@ -30,9 +30,15 @@
           <div>
             <h2>From {{ message.name }}</h2>
             {% if message.html_text() %}
-            <blockquote style="width: 700px; float: left; margin-right: 1em">
+            {% if message.has_media() %}
+            <blockquote style="width: 400px; float: left; margin-right: 1em">
               {{ message.html_text()|safe }}
             </blockquote>
+            {% else %}
+            <blockquote style="width: 800px">
+              {{ message.html_text()|safe }}
+            </blockquote>
+            {% endif %}
             {% endif %}
             {% if message.youtube_id %}
             <object width="560" height="315">
