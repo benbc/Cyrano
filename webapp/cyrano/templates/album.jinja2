@@ -2,6 +2,7 @@
   <head>
     <title>Cyrano - {{ album.name }}</title>
     <link rel="stylesheet" href="/static/slides.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/bootstrap.css" type="text/css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="/static/slides.jquery.js"></script>
     <script src="/static/slides.js"></script>
@@ -27,8 +28,12 @@
       <div class="slides_container">
         {% for message in album.messages %}
           <div>
-            <p>{{ message.name }} say</p>
-            <blockquote style="width: 800px">{{ message.html_text()|safe }}</blockquote>
+            <h2>From {{ message.name }}</h2>
+            {% if message.html_text() %}
+            <blockquote style="width: 700px; float: left; margin-right: 1em">
+              {{ message.html_text()|safe }}
+            </blockquote>
+            {% endif %}
             {% if message.youtube_id %}
             <object width="560" height="315">
               <param name="movie" value="https://www.youtube.com/v/{{ message.youtube_id }}?fs=1"></param>
