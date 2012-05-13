@@ -35,7 +35,7 @@ class Message(Base):
             self.flickr_link = flickr_link
 
     def html_text(self):
-        return "<p>%s</p>" % self.text.replace("\n", "</p></p>")
+        return "<p>%s</p>" % self.text.replace("\n", "</p><p>")
 
     def _youtube_id_from_url(self, url):
         if not url:
