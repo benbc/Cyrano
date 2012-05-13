@@ -1,14 +1,13 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>Cyrano - {{ album.name }}</title>
-    <link rel="stylesheet" href="/static/bootstrap.css" type="text/css"/>
     <link rel="stylesheet" href="/static/slides.css" type="text/css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="/static/slides.jquery.js"></script>
     <script src="/static/slides.js"></script>
   </head>
   <body>
+    <div class="container">
     <h1>{{ album.name }}</h1>
     <form action="/message/add" method="POST">
       <input type="hidden" name="album" value="{{ album.id }}"/>
@@ -27,35 +26,28 @@
     <div id="slides">
       <div class="slides_container">
         {% for message in album.messages %}
-        <div>
-          <table>
-            <tr>
-              <td class="message-text">
-                <p>{{ message.name }} say</p>
-                <blockquote>{{ message.html_text()|safe }}</blockquote>
-              </td>
-              <td>
-                {% if message.youtube_id %}
-                <object width="560" height="315">
-                  <param name="movie" value="https://www.youtube.com/v/{{ message.youtube_id }}?fs=1"></param>
-                  <param name="allowFullScreen" value="true"></param>
-                  <param name="allowScriptAccess" value="always"></param>
-                  <embed src="https://www.youtube.com/v/{{ message.youtube_id }}?fs=1"
-                         type="application/x-shockwave-flash"
-                         allowfullscreen="true"
-                         allowscriptaccess="always"
-                         width="560" height="315">
-                  </embed>
-                </object>
-                {% elif message.flickr_link %}
-                {{ message.flickr_link|safe }}
-                {% endif %}
-              </td>
-            </tr>
-        </table>
-        </div>
+          <div>
+            <p>{{ message.name }} say</p>
+            <blockquote style="width: 800px">{{ message.html_text()|safe }}</blockquote>
+            {% if message.youtube_id %}
+            <object width="560" height="315">
+              <param name="movie" value="https://www.youtube.com/v/{{ message.youtube_id }}?fs=1"></param>
+              <param name="allowFullScreen" value="true"></param>
+              <param name="allowScriptAccess" value="always"></param>
+              <embed src="https://www.youtube.com/v/{{ message.youtube_id }}?fs=1"
+                     type="application/x-shockwave-flash"
+                     allowfullscreen="true"
+                     allowscriptaccess="always"
+                     width="560" height="315">
+              </embed>
+            </object>
+            {% elif message.flickr_link %}
+            {{ message.flickr_link|safe }}
+            {% endif %}
+          </div>
         {% endfor %}
       </div>
+    </div>
     </div>
   </body>
 </html>
