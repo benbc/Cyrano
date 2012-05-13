@@ -10,12 +10,14 @@
   </head>
   <body>
     <div class="container">
-      <h1>{{ album.name }}</h1>
+      <div class="page-header">
+        <h1>{{ album.name }}'s album <small>for their Ruby Wedding</small></h1>
+      </div>
       <div id="slides">
         <div class="slides_container">
           {% for message in album.messages %}
             <div style="height: 600px">
-              <h2>From {{ message.name }}</h2>
+              <h3>From {{ message.name }}</h3>
               {% if message.html_text() %}
                 {% if message.has_media() %}
                   <blockquote style="width: 400px; float: left; margin-right: 1em">
