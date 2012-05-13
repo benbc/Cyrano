@@ -18,6 +18,12 @@ def add_album(request):
     DBSession.flush()
     return HTTPFound(request.route_url('album', id=album.id))
 
+@view_config(route_name='edit_album', renderer='templates/edit_album.jinja2')
+def edit_album(request):
+    id = request.matchdict['id']
+    album = DBSession.query(Album).get(id)
+    return {'album': album}
+
 @view_config(route_name='album', renderer='templates/album.jinja2')
 def album(request):
     id = request.matchdict['id']

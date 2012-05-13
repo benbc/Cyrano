@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Cyrano - {{ album.name }}</title>
@@ -10,20 +11,6 @@
   <body>
     <div class="container">
     <h1>{{ album.name }}</h1>
-    <form action="/message/add" method="POST">
-      <input type="hidden" name="album" value="{{ album.id }}"/>
-      <label for="message-name">Name</label>
-      <input type="text" name="name" id="message-name"/><br/>
-      <label for="message-text">Message</label>
-      <textarea name="text" id="message-text"></textarea><br/>
-      Enter only one of these:<br>
-      <label for="youtube-url">YouTube URL</label>
-      <input type="text" name="youtube-url" id="youtube-url"/>
-      <label for="flickr-link">Flickr link</label>
-      <input type="text" name="flickr-link" id="flickr-link"/>
-      <input type="submit" value="Add"/>
-    </form>
-
     <div id="slides">
       <div class="slides_container">
         {% for message in album.messages %}
