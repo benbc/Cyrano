@@ -14,7 +14,7 @@
       <div id="slides">
         <div class="slides_container">
           {% for message in album.messages %}
-            <div>
+            <div style="height: 600px">
               <h2>From {{ message.name }}</h2>
               {% if message.html_text() %}
                 {% if message.has_media() %}
