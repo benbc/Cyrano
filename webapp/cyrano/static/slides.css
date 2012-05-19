@@ -22,3 +22,11 @@
 .pagination .current a {
     color: red;
 }
+
+.next, .prev, .pagination {
+    font-size: 200%;
+}
+
+.next, .prev {
+    padding-left: 5em;
+}
