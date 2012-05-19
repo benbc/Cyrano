@@ -1,2 +1,2 @@
 . devenv
-pserve --reload webapp/production.ini
+pserve webapp/production.ini
