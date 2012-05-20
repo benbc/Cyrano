@@ -38,7 +38,6 @@ def add_message(request):
     text = request.params['text']
     youtube_url = request.params.get('youtube-url', None)
     flickr_link = request.params.get('flickr-link', None)
-    print request.params
 
     album = DBSession.query(Album).get(album_id)
     message = Message(album, name, text, youtube_url, flickr_link)
